@@ -1,8 +1,6 @@
 // src/components/Hallway.js
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import gridSketch from "../p5/gridSketch";
-import flowFields from "../p5/flowFields";
 import "../index.css";
 import Floor from "./Floor";
 import Wall from "./Wall";
