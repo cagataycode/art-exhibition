@@ -1,24 +1,22 @@
-// src/components/Hallway.js
 import React from "react";
-import { Canvas } from "@react-three/fiber";
-import "../index.css";
 import Floor from "./Floor";
 import Wall from "./Wall";
-import CameraControls from "./CameraControls";
+import Particles from "./Particles";
 
 const Hallway = () => {
   return (
-    <div className="canvas-container">
-      <Canvas camera={{ position: [0, 0, 10] }} style={{ background: "black" }}>
-        <CameraControls />
-        <ambientLight intensity={1.0} />
-        <pointLight position={[10, 10, 10]} />
-        <Floor />
-        <Wall position={[0, 0, -5]} />
-        <Wall position={[0, 0, 5]} rotation={[0, Math.PI, 0]} />
-        <Wall position={[0, 0, 0]} rotation={[0, Math.PI / 2, 0]} />
-      </Canvas>
-    </div>
+    <>
+      <ambientLight intensity={0.5} />
+      <pointLight position={[10, 10, 10]} intensity={1} />
+      <spotLight position={[-10, 10, 10]} angle={0.15} penumbra={1} />
+      <spotLight position={[10, -10, 10]} angle={0.15} penumbra={1} />
+      <Floor />
+      {/* Left Wall */}
+      <Wall position={[0, 0, 5]} rotation={[0, Math.PI, 0]} />
+      {/* Right Wall */}
+      <Wall position={[0, 0, -5]} rotation={[0, -Math.PI, 0]} />
+      <Particles />
+    </>
   );
 };
 

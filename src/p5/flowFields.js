@@ -1,5 +1,3 @@
-import p5 from "p5";
-
 const flowFields = (p) => {
   let particles = [];
   let colors = [];
@@ -8,6 +6,7 @@ const flowFields = (p) => {
   const speed = 0.2;
 
   p.setup = () => {
+    console.log("flowFields setup");
     p.createCanvas(800, 800);
     for (let i = 0; i < num; i++) {
       particles.push(p.createVector(p.random(p.width), p.random(p.height)));
@@ -16,25 +15,28 @@ const flowFields = (p) => {
   };
 
   p.draw = () => {
+    if (particles.length < 2) {
+      console.log("flowFields draw");
+    }
     p.background(0, 5);
     for (let i = 0; i < num; i++) {
-      let pVector = particles[i];
+      let particle = particles[i];
       p.stroke(colors[i]);
-      p.point(pVector.x, pVector.y);
-      let n = p.noise(pVector.x * noiseScale, pVector.y * noiseScale);
+      p.point(particle.x, particle.y);
+      let n = p.noise(particle.x * noiseScale, particle.y * noiseScale);
       let a = p.TAU * n;
-      pVector.x += p.cos(a) * speed;
-      pVector.y += p.sin(a) * speed;
-      if (!onScreen(pVector)) {
-        pVector.x = p.random(p.width);
-        pVector.y = p.random(p.height);
+      particle.x += p.cos(a) * speed;
+      particle.y += p.sin(a) * speed;
+      if (!onScreen(particle)) {
+        particle.x = p.random(p.width);
+        particle.y = p.random(p.height);
       }
     }
   };
 
-  const onScreen = (v) => {
+  function onScreen(v) {
     return v.x >= 0 && v.x <= p.width && v.y >= 0 && v.y <= p.height;
-  };
+  }
 };
 
 export default flowFields;
