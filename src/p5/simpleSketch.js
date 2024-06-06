@@ -7,7 +7,6 @@ const simpleSketch = (p) => {
     p.background(0);
     p.fill("red");
     p.ellipse(p.width / 2, p.height / 2, 50, 50);
-    console.log("simpleSketch draw called");
   };
 };
 

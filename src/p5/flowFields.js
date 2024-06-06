@@ -15,9 +15,6 @@ const flowFields = (p) => {
   };
 
   p.draw = () => {
-    if (particles.length < 2) {
-      console.log("flowFields draw");
-    }
     p.background(0, 5);
     for (let i = 0; i < num; i++) {
       let particle = particles[i];
